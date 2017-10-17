@@ -5,9 +5,15 @@ class MessageMailer < ApplicationMailer
   #
   #   en.message_mailer.index.subject
   #
-  def index
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def index receiver,content,message,subject,email
+    @email = email
+    @content = content
+    mail(to: receiver, subject: subject)
   end
+
+  # def full_from(user)
+  #   address = Mail::Address.new user.email
+  #   address.format
+  # end
+
 end

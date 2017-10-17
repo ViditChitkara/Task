@@ -5,6 +5,14 @@ class HomeController < ApplicationController
 
   def file_upload
     email_ids = save_contacts(params[:file])
+    subject = params[:subject]
+    content = params[:content]
+    email_ids.each do |e|
+      receiver = Contact.find_by_email(e)
+      em = Email.create(:sender => current_user.email, :receiver => e, :content => content)
+      MessageMailer.index(e,content,content,subject,em).deliver_later
+    end
+    return redirect_to '/'
   end
 
   def save_contacts file

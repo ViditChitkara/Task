@@ -1,6 +1,6 @@
 <%= form_tag file_upload_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= text_field_tag :subject%>
-  <%= text_area_tag :content%>
+  <%= cktext_area_tag :content%>
   <%= submit_tag "Send" %>
 <% end %>
