@@ -93,7 +93,7 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = {
       address:              'smtp.gmail.com',
       port:                 587,
-      domain:               'gmail.com',
+      domain:               'cntask.heroku.com',
       user_name:            'courserarails@gmail.com',
       password:             'test@1234',
       authentication:       :plain,
