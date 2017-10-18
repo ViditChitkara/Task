@@ -5,15 +5,10 @@ class MessageMailer < ApplicationMailer
   #
   #   en.message_mailer.index.subject
   #
-  def index receiver,content,message,subject,email
+  def index sender,receiver,content,subject,email
     @email = email
     @content = content
-    mail(to: receiver, subject: subject)
+    mail(to: receiver, subject: subject, reply_to: sender.email)
   end
-
-  # def full_from(user)
-  #   address = Mail::Address.new user.email
-  #   address.format
-  # end
 
 end

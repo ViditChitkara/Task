@@ -9,11 +9,18 @@ class HomeController < ApplicationController
     content = params[:content]
     email_ids.each do |e|
       receiver = Contact.find_by_email(e)
-      em = Email.create(:sender => current_user.email, :receiver => e, :content => content)
-      MessageMailer.index(e,content,content,subject,em).deliver_later
+      content_user_specific = message_for_receiver(receiver,content.dup)
+      email_instance = Email.create(:sender => current_user.email, :receiver => e, :content => content)
+      if valid_content(content_user_specific)
+        MessageMailer.index(current_user,e,content_user_specific,subject,email_instance).deliver_later
+      else
+        email_instance.update(:status => "user info in email not complete")
+      end
     end
     return redirect_to '/'
   end
+
+  private 
 
   def save_contacts file
     email_ids = []
@@ -41,6 +48,20 @@ class HomeController < ApplicationController
       email_ids << row["email"]
     end
     email_ids
+  end
+
+  def message_for_receiver contact,template
+    probables = Contact.column_names - ["id","created_at","updated_at"]
+   
+    probables.each do |p|
+      pattern = "##"+p+"##"
+      template.gsub!(pattern,contact[p]) unless (contact[p].nil?||contact[p].empty?)
+    end
+    template
+  end
+
+  def valid_content content
+    content.match(/##\b\S+?\b##/).nil?
   end
 
 end
