@@ -1,17 +1,25 @@
 <div class="container" style="margin-top: 20vh;">
 
-	<% @columns.each do |c| %>
-		<div class="row">
-			<span><b><%= c %>:</b></span>
-			<span>
-				<% if c=="created_at" %>
-				  	<td><%= @email[c].strftime("%a, %B %d %Y %I:%M %P") %></td>
-				<% else %>
-					<td><%= @email[c].to_s.html_safe %></td>
-			    <% end %>
-			</span>
-		</div>
-	<% end %>
+	<table class="table table-bordered">
+	  <thead>
+	    <tr>
+	      <% @columns.each do |c| %>	
+		      <th><%= c %></th>
+	      <% end %>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  		<tr>
+			  	<% @columns.each do |c| %>	
+			  		<% if c=="created_at" %>
+			  			<td><%= @email[c].strftime("%a, %B %d %Y %I:%M %P") %></td>
+			  		<% else %>
+				    	<td><%= @email[c].to_s.html_safe %></td>
+				    <% end %>
+			    <% end %>	
+			</tr>
+	  </tbody>
+	</table>
 
 
 </div>

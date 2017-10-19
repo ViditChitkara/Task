@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     email_ids.each do |e|
       receiver = Contact.find_by_email(e)
       content_user_specific = message_for_receiver(receiver,content.dup)
-      email_instance = Email.create(:sender => current_user.email, :receiver => e, :content => content)
+      email_instance = Email.create(:sender => current_user.email, :receiver => e, :content => content_user_specific)
       if valid_content(content_user_specific)
         MessageMailer.index(current_user,e,content_user_specific,subject,email_instance).deliver_later
       else
