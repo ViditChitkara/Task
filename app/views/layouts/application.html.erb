@@ -16,7 +16,7 @@
 
   <body>
     <% if user_signed_in? %>
-      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,7 +26,7 @@
               <a class="nav-link" href="/">Dashboard</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">Previous Mails</a>
+              <a class="nav-link" href="/all_mails/index">Previous Mails</a>
           </li>
           <li class="nav-item">
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>

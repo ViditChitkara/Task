@@ -1,3 +1,6 @@
+<% if flash[:error] %>
+  <p><%= flash[:error] %></p>
+<% end %>
 <div class="container col-sm-6 col-sm-offset-3" id="form">
 
 	<%= form_tag file_upload_path, multipart: true do %>
@@ -5,7 +8,7 @@
 	  <div class="input-group form-group">
       	<span class="input-group-btn">
       	    <span class="btn btn-primary btn-file">
-            Browse&hellip; <%= file_field_tag :file, class: 'form-control-file', id: 'exampleInputFile' %>
+            Browse&hellip; <%= file_field_tag :file, class: 'form-control-file', id: 'exampleInputFile',:accept => '.xlsx' %>
             </span>
         </span>
         <input type="text" class="form-control" placeholder="Upload only an xlsx file (Email column is a must)" readonly>
