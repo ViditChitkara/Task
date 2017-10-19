@@ -7,10 +7,11 @@ class AllMailsController < ApplicationController
   def show
   	email = Email.find(params[:id])
   	if email.sender == current_user.email
+  		@email = email
+  		@columns = Email.column_names - ["updated_at"]
   	else
   		flash[:notice] = 'Insufficient rights!'
 		redirect_to '/all_mails/index'
-		# return redirect_to '/all_mails/index', :flash => { :error => "Insufficient rights!" }
   	end
   end
 
