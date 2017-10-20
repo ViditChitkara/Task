@@ -56,13 +56,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: '3000' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :address => "smtp.gmail.com",
+    :user_name => 'viditchitkara',
+    :password => 'Vc@9650336940',
+    :domain => 'cntask.herokuapp.com',
+    :address => 'smtp.sendgrid.net',
     :port => 587,
-    :domain => "gmail.com",
-    :user_name => "courserarails@gmail.com",
-    :password => "test@1234" ,
-    :enable_starttls_auto => true,
-    :authentication => :plain
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 
 

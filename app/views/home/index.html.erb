@@ -22,9 +22,37 @@
 	  	<%= cktext_area_tag :content%>
 	  </div>
 
-	  <button type="submit" class="btn btn-primary">Send</button>
+	  <div class="d-flex p-2 justify-content-between">
+	 	 <button type="submit" class="btn btn-primary">Send</button>
+	 	 <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-link">Instructions</button>
+	  </div>
 
 	<% end %>
+
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          <h4 class="modal-title" id="myModalLabel">How to use</h4>
+        </div>
+        <div class="modal-body">
+          <ul>
+          	<li>Upload file only in .xlsx format</li>
+          	<li>Email column is a must in excel file</li>
+          	<li>Attributes like ##name##, ##address, ##discount##, ##phone_no## can be used in message body</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primmry" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </div>
 

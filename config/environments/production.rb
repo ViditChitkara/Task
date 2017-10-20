@@ -91,12 +91,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://cntask.herokuapp.com/' }
 
   ActionMailer::Base.smtp_settings = {
-      address:              'smtp.gmail.com',
-      port:                 587,
-      domain:               'cntask.heroku.com',
-      user_name:            'courserarails@gmail.com',
-      password:             'test@1234',
-      authentication:       :plain,
-      enable_starttls_auto: true
-    }
+    :user_name => 'viditchitkara',
+    :password => 'Vc@9650336940',
+    :domain => 'cntask.herokuapp.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end

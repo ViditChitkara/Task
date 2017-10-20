@@ -13,3 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+$(document).on('turbolinks:load',function() {
+	$('#myModal').on('shown.bs.modal', function () {
+	  $('#myInput').focus();
+	});
+});

@@ -12,7 +12,14 @@ class HomeController < ApplicationController
       content_user_specific = message_for_receiver(receiver,content.dup)
       email_instance = Email.create(:sender => current_user.email, :receiver => e, :content => content_user_specific)
       if valid_content(content_user_specific)
-        MessageMailer.index(current_user,e,content_user_specific,subject,email_instance).deliver_later
+        
+        begin
+          MessageMailer.index(current_user,e,content_user_specific,subject,email_instance).deliver_later
+        rescue Net::SMTPAuthenticationError, Net::SMTPServerBusy, Net::SMTPSyntaxError, Net::SMTPFatalError, Net::SMTPUnknownError => e
+          email_instance.update(:status => "Mail Bounced")
+          return redirect_to '/'
+        end
+        
       else
         email_instance.update(:status => "user info in email not complete")
       end
