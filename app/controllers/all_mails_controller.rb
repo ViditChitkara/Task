@@ -1,7 +1,7 @@
 class AllMailsController < ApplicationController
   def index
   	@columns = Email.column_names - ["content","updated_at"]
-  	@all_mails = Email.where(sender: current_user.email).order(created_at: :desc)
+  	@all_mails = Email.where(sender: current_user.email).order(created_at: :desc).page params[:page]
   end
 
   def show
